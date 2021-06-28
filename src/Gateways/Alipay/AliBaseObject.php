@@ -164,7 +164,8 @@ abstract class AliBaseObject extends BaseObject
         $params = ArrayUtil::arraySort($data);
 
         try {
-            $preStr = ArrayUtil::createLinkString($params);
+            // $preStr = ArrayUtil::createLinkString($params);
+            $preStr = urldecode(http_build_query(ksort($params)));
 
             if ($signType === 'RSA') {// 使用RSA
                 $rsa = new RsaEncrypt($this->publicKey);
